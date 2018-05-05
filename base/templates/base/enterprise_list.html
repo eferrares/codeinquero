@@ -29,14 +29,14 @@
                 <div class="isotope-item outdoor iso-height-1">
                   <div class="gallery-list-item">
                     <div class="gl-item-image-wrap">
-                      <a href="albums-archive.html" class="gl-item-image-inner">
+                      <a href="{% url 'enterprise_details' enterprise.slug %}" class="gl-item-image-inner">
                         <div class="gl-item-image bg-image" style="background-image: url({{ enterprise.main_photo.url }}); background-position: 50% 50%"></div>
                         <span class="gl-item-image-zoom"></span>
                       </a>
                     </div>
                     <div class="gl-item-info">
                       <div class="gl-item-caption">
-                        <h2 class="gl-item-title"><a href="albums-archive.html">{{ enterprise.name }}</a></h2>
+                        <h2 class="gl-item-title"><a href="{% url 'enterprise_details' enterprise.slug %}">{{ enterprise.name }}</a></h2>
                       </div>
                     </div>
                   </div>
