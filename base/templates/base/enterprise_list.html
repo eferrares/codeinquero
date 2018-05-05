@@ -1,0 +1,22 @@
+{% extends "_layouts/base.html" %}
+{% load staticfiles %}
+{% block content %}
+  <div id="body-content">
+    <section id="page-header" class="ph-lg ph-center">
+      <div class="page-header-image parallax-bg-3 bg-image" style="background-image: url({% static "assets/img/page-header-bg-1.jpg" %});">
+        <div class="cover bg-transparent-5-dark"></div>
+      </div>
+      <div class="page-header-inner tt-wrap">
+        <div class="page-header-caption ph-caption-lg parallax-5 fade-out-scroll-4">
+          <h1 class="page-header-title">Empresas</h1>
+          <hr class="hr-short">
+          <div class="page-header-description" data-max-words="40">
+            <p>Acompanhe o dia a dia mostrada pelos funcionários.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="gallery-list-section">
+    </section>
+  </div>
+{% endblock content %}
