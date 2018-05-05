@@ -33,3 +33,4 @@ django-debug-toolbar
 anyjson
 channels
 birdy
+Pillow

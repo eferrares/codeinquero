@@ -63,6 +63,7 @@ class Enterprise(models.Model):
     user = models.ForeignKey(User)
     name = models.CharField(max_length=100)
     slug = models.SlugField(max_length=50)
+    main_photo = models.ImageField(max_length=200, null=True, blank=True)
 
 
 class Post(models.Model):
