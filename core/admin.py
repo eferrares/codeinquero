@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import(
+    Enterprise,
     User,
 )
 
@@ -14,3 +15,4 @@ class UserAdmin(admin.ModelAdmin):
 
 
 admin.site.register(User, UserAdmin)
+admin.site.register(Enterprise, admin.ModelAdmin)

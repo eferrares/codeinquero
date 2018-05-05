@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from core.models import Enterprise
 
 
 def home(request):
@@ -6,5 +7,7 @@ def home(request):
 
 
 def enterprise_list(request):
-    context = {}
+    context = {
+        'enterprises': Enterprise.objects.all()
+    }
     return render(request, 'base/enterprise_list.html', context)
