@@ -38,8 +38,8 @@ INSTALLED_APPS = (
 
     # Third-party apps, patches, fixes
     'djcelery',
-    'debug_toolbar',
     'compressor',
+    'channels',
 
     # Application base, containing global templates.
     'base',
@@ -128,7 +128,6 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 TEMPLATES = [
@@ -157,20 +156,6 @@ TEMPLATES = [
 
 TEST_RUNNER = 'django.test.runner.DiscoverRunner'
 
-
-def custom_show_toolbar(request):
-    """ Only show the debug toolbar to users with the superuser flag. """
-    return request.user.is_superuser
-
-
-DEBUG_TOOLBAR_CONFIG = {
-    'INTERCEPT_REDIRECTS': False,
-    'SHOW_TOOLBAR_CALLBACK': 'codeinquero.settings.base.custom_show_toolbar',
-    'HIDE_DJANGO_SQL': True,
-    'TAG': 'body',
-    'SHOW_TEMPLATE_CONTEXT': True,
-    'ENABLE_STACKTRACES': True,
-}
 
 AUTH_USER_MODEL = 'core.User'
 
@@ -221,6 +206,8 @@ except:
     SECRET_KEY = 'fqqv^ca)ailohed@t3*p*a@23esv^+2!7h$hp2_rho_0zq83i('
 
 INTERNAL_IPS = ('127.0.0.1')
+
+ASGI_APPLICATION = "codeinquero.routing.application"
 
 # Enable this option for memcached
 #CACHE_BACKEND= "memcached://127.0.0.1:11211/"

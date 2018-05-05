@@ -62,3 +62,17 @@ class Enterprise(models.Model):
     user = models.ForeignKey(User)
     name = models.CharField(max_length=100)
     slug = models.SlugField(max_length=50)
+
+
+class Post(models.Model):
+    file = models.FileField(max_length=200)
+    username = models.CharField(max_length=200)
+    text = models.TextField()
+
+
+class Like(models.Model):
+    post = models.ForeignKey(Post)
+
+
+class Coment(models.Model):
+    post = models.ForeignKey(Post)
