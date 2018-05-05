@@ -32,3 +32,4 @@ django-debug-toolbar
 #django-waffle
 anyjson
 channels
+birdy

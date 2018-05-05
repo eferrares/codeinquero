@@ -3,6 +3,7 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, Permis
 from django.db import models
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
+from datetime import datetime
 
 
 class UserManager(BaseUserManager):
@@ -68,6 +69,7 @@ class Post(models.Model):
     file = models.FileField(max_length=200)
     username = models.CharField(max_length=200)
     text = models.TextField()
+    date_posted = models.DateTimeField(default=datetime.now())
 
 
 class Like(models.Model):
