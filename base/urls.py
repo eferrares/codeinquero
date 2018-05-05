@@ -6,4 +6,5 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.home, name='home'),
+    url(r'^empresas$', views.enterprise_list, name='enterprise_list'),
 ]
