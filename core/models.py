@@ -56,3 +56,9 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def get_short_name(self):
         return self.name.split(' ')[0]
+
+
+class Enterprise(models.Model):
+    user = models.ForeignKey(User)
+    name = models.CharField(max_length=100)
+    slug = models.SlugField(max_length=50)
