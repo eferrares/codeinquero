@@ -1,0 +1,4 @@
+psycopg2
+
+# for bcrypt passwords
+bcrypt
