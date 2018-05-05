@@ -67,6 +67,7 @@ class Enterprise(models.Model):
 
 
 class Post(models.Model):
+    enterprise = models.ForeignKey(Enterprise)
     file = models.FileField(max_length=200)
     username = models.CharField(max_length=200)
     text = models.TextField()
