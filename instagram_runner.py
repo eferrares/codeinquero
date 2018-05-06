@@ -129,7 +129,7 @@ class HashTagSearch(metaclass=ABCMeta):
                 'first': 4,
                 'after': end_cursor
             }
-            url = "https://www.instagram.com/graphql/query/?query_hash=%s&variables=%s" % (potential_id, json.dumps(variables))
+            url = "https://www.instagram.com/graphql/query/?query_id=%s&variables=%s" % (potential_id, json.dumps(variables))
             try:
                 data = requests.get(url).json()
                 if data['status'] == 'fail':
@@ -202,7 +202,6 @@ class HashTagSearch(metaclass=ABCMeta):
         :param owner: Instagrams JSON user object
         :return: An Instagram User object
         """
-        import pdb; pdb.set_trace()
         username = None
         if "username" in owner:
             username = owner["username"]
@@ -230,6 +229,9 @@ class HashTagSearch(metaclass=ABCMeta):
                 return enterprise[0]
         return None
 
+    def already_saved(self, post_id):
+        return Post.objects.filter(external_id=post_id).exists()
+
     @abstractmethod
     def save_results(self, instagram_results):
         """
@@ -237,16 +239,17 @@ class HashTagSearch(metaclass=ABCMeta):
         :param instagram_results: A list of Instagram Posts
         """
         for result in instagram_results:
-            post = Post()
-            post.enterprise = self.get_enterprise(result.hashtags())
-            post.file = result.display_src
-            post.username = result.user.id
-            post.user_display_name = result.user.bio
-            post.text = result.processed_text()
-            tz = pytz.timezone("UTC")
-            post.date_posted = datetime.fromtimestamp(result.created_at, tz)
-            # post.external_id = result.code
-            post.save()
+            if not self.already_saved(result.post_id):
+                post = Post()
+                post.enterprise = self.get_enterprise(result.hashtags())
+                post.file = result.display_src
+                post.username = result.user.id
+                post.user_display_name = result.user.bio
+                post.text = result.processed_text()
+                tz = pytz.timezone("UTC")
+                post.date_posted = datetime.fromtimestamp(result.created_at, tz)
+                post.external_id = result.post_id
+                post.save()
 
 
 class HashTagSearchExample(HashTagSearch):
