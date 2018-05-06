@@ -48,7 +48,7 @@ def handle_new_tweet(tweet):
 
 def start():
     client = StreamClient(CONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
-    resource = client.stream.statuses.filter.post(track='#minhatagdeteste')
+    resource = client.stream.statuses.filter.post(track='#minhatagdeteste,#python,#twitter')
 
     for tweet in resource.stream():
         try:
