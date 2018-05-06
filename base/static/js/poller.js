@@ -87,5 +87,10 @@ $(document).ready(function () {
       });
   }
 
+  function shuffleIsotopp() {
+    $grid.isotope('shuffle');
+  }
+
   setInterval(updatePosts, 3000);
+  setInterval(shuffleIsotopp, 30000);
 });
