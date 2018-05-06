@@ -234,6 +234,13 @@ class HashTagSearch(metaclass=ABCMeta):
     def already_saved(self, post_id):
         return Post.objects.filter(external_id=post_id).exists()
 
+    def get_video(self, code):
+        url = "https://www.instagram.com/p/%s" % (code)
+
+        response = bs4.BeautifulSoup(requests.get(url).text, "html.parser")
+        video = response.find("meta", property="og:video")
+        return video["content"]
+
     @abstractmethod
     def save_results(self, instagram_results):
         """
@@ -241,16 +248,19 @@ class HashTagSearch(metaclass=ABCMeta):
         :param instagram_results: A list of Instagram Posts
         """
         for result in instagram_results:
-            if not self.already_saved(result.post_id):
+            if not self.already_saved(result.post_id) or result.is_video:
                 post = Post()
                 post.enterprise = self.get_enterprise(result.hashtags())
-                post.file = result.display_src
                 post.username = result.user.id
                 post.user_display_name = result.user.bio
                 post.text = result.processed_text()
                 tz = pytz.timezone("UTC")
                 post.date_posted = datetime.fromtimestamp(result.created_at, tz)
                 post.external_id = result.post_id
+                if result.is_video:
+                    post.file = self.get_video(result.code)
+                else:
+                    post.file = result.display_src
                 post.save()
 
 

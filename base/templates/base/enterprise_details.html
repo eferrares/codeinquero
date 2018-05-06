@@ -75,9 +75,15 @@
 
                   {% if post.file %}
                     <div class="gl-item-image-wrap">
-                      <a href="gallery-single-grid.html" class="gl-item-image-inner">
-                        <img src="{{ post.file }}" class="gl-item-image" alt="">
-                      </a>
+                        {% if post.is_video %}
+                           <video class="gl-item-image-inner" controls>
+                            <source src="{{ post.file }}" type="video/mp4">
+                          </video>
+                        {% else %}
+                          <a href="gallery-single-grid.html" class="gl-item-image-inner">
+                              <img src="{{ post.file }}" class="gl-item-image" alt="">
+                          </a>
+                        {% endif %}
                     </div>
                     <div class="gl-item-info">
                       <div class="gl-item-caption">

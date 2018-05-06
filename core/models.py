@@ -82,6 +82,9 @@ class Post(models.Model):
     external_id = models.BigIntegerField(null=True)
     moderated = models.BooleanField(default=True)
 
+    def is_video(self):
+        return self.file.endswith('.mp4')
+
 
 class Like(models.Model):
     post = models.ForeignKey(Post)
