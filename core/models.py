@@ -74,6 +74,7 @@ class Post(models.Model):
     text = models.TextField()
     date_posted = models.DateTimeField(default=datetime.now())
     show = models.BooleanField(default=True)
+    external_id = models.BigIntegerField(null=True)
 
 
 class Like(models.Model):
