@@ -39,3 +39,28 @@
 .gallery-list-item {
   overflow: hidden;
 }
+
+.search-input-wrapper {
+
+}
+
+.search-input {
+  width: 100%;
+  display: block;
+  height: 90px;
+  font-size: 50px;
+  font-weight: 600;
+  background-color: #000;
+  border: none;
+  padding: 15px 30px;
+  outline-color: #eee;
+  text-align: center;
+}
+
+.home-title {
+  font-weight: 400;
+  font-size: 30px;
+  margin-bottom: 50px;
+  text-align: center;
+  color: #e6e6e6;
+}

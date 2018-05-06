@@ -2,343 +2,48 @@
 {% load staticfiles %}
 {% block content %}
   <div id="body-content">
-
-
-    <!-- ========================
-    ///// Begin page header /////
-    =============================
-    * Use classes "ph-xs", "ph-sm", "ph-lg" or "ph-xlg" to set page header size.
-    * Use class "ph-center" or "ph-right" to align page header caption.
-    -->
     <section id="page-header" class="ph-lg ph-center">
 
-      <!-- Begin page header image
-      =============================
-      * Use class "parallax-bg-1" up to "parallax-bg-6" to enable background image parallax effect.
-      * Use class "fade-out-scroll-3" to enable fade out effect if page scroll.
-      * Use class "hide-ph-image" to hide page header image without removing the code.
-      -->
-      <div class="page-header-image parallax-bg-3 bg-image" style="background-image: url({% static "assets/img/page-header-bg-1.jpg" %});">
+<!--       <div class="page-header-image parallax-bg-3 bg-image" style="background-image: url({% static 'Selfie.jpg' %}); background-position: 50% 0;">
 
-        <!-- Element cover
-        ===================
-        * You can use prepared background transparent classes depends on brightness of your page header image. More info: file "helper.css".
-        -->
-        <div class="cover bg-transparent-5-dark"></div>
+      </div> -->
 
-      </div>
-      <!-- End page header image -->
-
-      <!-- Begin page header inner -->
       <div class="page-header-inner tt-wrap">
-
-        <!-- Begin page header caption
-        ===============================
-        * Use classes "ph-caption-xs", "ph-caption-sm", "ph-caption-lg" or "ph-caption-xlg" to set page header size.
-        * Use class "parallax-1" up to "parallax-6" to enable parallax effect.
-        * Use class "fade-out-scroll-1" up to "fade-out-scroll-6" to enable fade out effect if page scroll.
-        -->
-        <div class="page-header-caption ph-caption-lg parallax-5 fade-out-scroll-4">
-          <h1 class="page-header-title">Quero Educação</h1>
-          <hr class="hr-short">
-
-          <!-- Use data attributes to set text maximum characters or words (example: data-max-characters="120" or data-max-words="40") -->
-          <div class="page-header-description" data-max-words="40">
-            <p>Acompanhe o dia a dia mostrada pelos funcionários.</p>
-          </div>
-
+        <h1 class="home-title">Acompanhe o dia a dia das empresas através dos cliques de seus funcionários.</h1>
+        <div class="search-input-wrapper">
+          <input type="text" placeholder="Buscar..." class="search-input">
         </div>
-        <!-- End page header caption -->
-
       </div>
-      <!-- End page header inner -->
-
     </section>
-    <!-- End page header -->
-
-
-    <!-- =================================
-    ///// Begin gallery list section /////
-    ================================== -->
     <section id="gallery-list-section">
-      <div class="isotope-wrap tt-wrap"> <!-- add/remove class "tt-wrap" to enable/disable element boxed layout (class "tt-boxed" is required in <body> tag! ) -->
-
-        <!-- Begin isotope
-        ===================
-        * Use class "gutter-1", "gutter-2" or "gutter-3" to add more space between items.
-        * Use class "col-1", "col-2", "col-3", "col-4", "col-5" or "col-6" for columns.
-        -->
-        <div class="isotope col-3 gutter-1">
-
-            <button class="botaomaneiro">vai</button>
-          <div class="isotope-items-wrap gli-colored gli-alter-4">
-
-            <!-- Grid sizer (do not remove!!!) -->
-            <div class="grid-sizer"></div>
-
-
-
-            <div class="isotope-item outdoor">
-
-              <!-- Begin gallery list item -->
-              <div class="gallery-list-item">
-
-                <!-- Begin gallery list item image -->
-                <div class="gl-item-image-wrap">
-
-                  <!-- Begin gallery list item image inner -->
-                  <a href="gallery-single-grid.html" class="gl-item-image-inner">
-                    <img src="http://lorempixel.com/900/500/food/" class="gl-item-image" alt="">
-                  </a>
-                </div>
-
-                <div class="gl-item-info">
-                  <div class="gl-item-caption">
-                    <h2 class="gl-item-title"><a href="gallery-single-grid.html">The Old Man Dreams</a></h2>
-                    <span class="gl-item-category"><a href="albums-archive.html">Outdoor</a></span>
-                  </div>
-                </div>
-                <!-- End gallery list item info -->
-
-              </div>
-              <!-- End gallery list item -->
-
-            </div>
-
-
-
-
-            <div class="isotope-item outdoor">
-
-              <!-- Begin gallery list item -->
-              <div class="gallery-list-item">
-
-                <!-- Begin gallery list item image -->
-                <div class="gl-item-image-wrap">
-
-                  <!-- Begin gallery list item image inner -->
-                  <a href="gallery-single-grid.html" class="gl-item-image-inner">
-                    <img src="http://lorempixel.com/500/500/food/" class="gl-item-image" alt="">
-                  </a>
-                </div>
-
-                <div class="gl-item-info">
-                  <div class="gl-item-caption">
-                    <h2 class="gl-item-title"><a href="gallery-single-grid.html">The Old Man Dreams</a></h2>
-                    <span class="gl-item-category"><a href="albums-archive.html">Outdoor</a></span>
-                  </div>
-                </div>
-                <!-- End gallery list item info -->
-
-              </div>
-              <!-- End gallery list item -->
-
-            </div>
-
-
-
-            <div class="isotope-item outdoor">
-
-              <!-- Begin gallery list item -->
-              <div class="gallery-list-item">
-
-                <!-- Begin gallery list item image -->
-                <div class="gl-item-image-wrap">
-
-                  <!-- Begin gallery list item image inner -->
-                  <a href="gallery-single-grid.html" class="gl-item-image-inner">
-                    <img src="http://lorempixel.com/1200/900/food/" class="gl-item-image" alt="">
-                  </a>
-                </div>
-
-                <div class="gl-item-info">
-                  <div class="gl-item-caption">
-                    <h2 class="gl-item-title"><a href="gallery-single-grid.html">The Old Man Dreams</a></h2>
-                    <span class="gl-item-category"><a href="albums-archive.html">Outdoor</a></span>
-                  </div>
-                </div>
-                <!-- End gallery list item info -->
-
-              </div>
-              <!-- End gallery list item -->
-
-            </div>
-
-
-            <div class="isotope-item outdoor">
-
-              <!-- Begin gallery list item -->
-              <div class="gallery-list-item">
-
-                <!-- Begin gallery list item image -->
-                <div class="gl-item-image-wrap">
-
-                  <!-- Begin gallery list item image inner -->
-                  <a href="gallery-single-grid.html" class="gl-item-image-inner">
-                    <img src="http://lorempixel.com/1200/1000/food/" class="gl-item-image" alt="">
-                  </a>
-                </div>
-
-                <div class="gl-item-info">
-                  <div class="gl-item-caption">
-                    <h2 class="gl-item-title"><a href="gallery-single-grid.html">The Old Man Dreams</a></h2>
-                    <span class="gl-item-category"><a href="albums-archive.html">Outdoor</a></span>
-                  </div>
-                </div>
-                <!-- End gallery list item info -->
-
-              </div>
-              <!-- End gallery list item -->
-
-            </div>
-
-
-
-            <div class="isotope-item outdoor">
-
-              <!-- Begin gallery list item -->
-              <div class="gallery-list-item">
-
-                <!-- Begin gallery list item image -->
-                <div class="gl-item-image-wrap">
-
-                  <!-- Begin gallery list item image inner -->
-                  <a href="gallery-single-grid.html" class="gl-item-image-inner">
-                    <img src="http://lorempixel.com/1200/800/food/" class="gl-item-image" alt="">
-                  </a>
-                </div>
-
-                <div class="gl-item-info">
-                  <div class="gl-item-caption">
-                    <h2 class="gl-item-title"><a href="gallery-single-grid.html">The Old Man Dreams</a></h2>
-                    <span class="gl-item-category"><a href="albums-archive.html">Outdoor</a></span>
-                  </div>
-                </div>
-                <!-- End gallery list item info -->
-
-              </div>
-              <!-- End gallery list item -->
-
-            </div>
-
-
-
-            <div class="isotope-item outdoor">
-
-              <!-- Begin gallery list item -->
-              <div class="gallery-list-item">
-
-                <!-- Begin gallery list item image -->
-                <div class="gl-item-image-wrap">
-
-                  <!-- Begin gallery list item image inner -->
-                  <a href="gallery-single-grid.html" class="gl-item-image-inner">
-                    <img src="http://lorempixel.com/600/900/food/" class="gl-item-image" alt="">
-                  </a>
-                </div>
-
-                <div class="gl-item-info">
-                  <div class="gl-item-caption">
-                    <h2 class="gl-item-title"><a href="gallery-single-grid.html">The Old Man Dreams</a></h2>
-                    <span class="gl-item-category"><a href="albums-archive.html">Outdoor</a></span>
-                  </div>
-                </div>
-                <!-- End gallery list item info -->
-
-              </div>
-              <!-- End gallery list item -->
-
-            </div>
-
-
-            <div class="isotope-item outdoor">
-
-              <!-- Begin gallery list item -->
-              <div class="gallery-list-item">
-
-                <!-- Begin gallery list item image -->
-                <div class="gl-item-image-wrap">
-
-                  <!-- Begin gallery list item image inner -->
-                  <a href="gallery-single-grid.html" class="gl-item-image-inner">
-                    <img src="http://lorempixel.com/1200/1000/food/" class="gl-item-image" alt="">
-                  </a>
-                </div>
-
-                <div class="gl-item-info">
-                  <div class="gl-item-caption">
-                    <h2 class="gl-item-title"><a href="gallery-single-grid.html">The Old Man Dreams</a></h2>
-                    <span class="gl-item-category"><a href="albums-archive.html">Outdoor</a></span>
-                  </div>
-                </div>
-                <!-- End gallery list item info -->
-
-              </div>
-              <!-- End gallery list item -->
-
-            </div>
-
-
-            <div class="isotope-item outdoor">
-
-              <!-- Begin gallery list item -->
-              <div class="gallery-list-item">
-
-                <!-- Begin gallery list item image -->
-                <div class="gl-item-image-wrap">
-
-                  <!-- Begin gallery list item image inner -->
-                  <a href="gallery-single-grid.html" class="gl-item-image-inner">
-                    <img src="http://lorempixel.com/1200/1000/food/" class="gl-item-image" alt="">
-                  </a>
-                </div>
-
-                <div class="gl-item-info">
-                  <div class="gl-item-caption">
-                    <h2 class="gl-item-title"><a href="gallery-single-grid.html">The Old Man Dreams</a></h2>
-                    <span class="gl-item-category"><a href="albums-archive.html">Outdoor</a></span>
-                  </div>
-                </div>
-                <!-- End gallery list item info -->
-
-              </div>
-              <!-- End gallery list item -->
-
-            </div>
-
-
-            <div class="isotope-item outdoor">
-
-              <!-- Begin gallery list item -->
-              <div class="gallery-list-item">
-
-                <!-- Begin gallery list item image -->
-                <div class="gl-item-image-wrap">
-
-                  <!-- Begin gallery list item image inner -->
-                  <a href="gallery-single-grid.html" class="gl-item-image-inner">
-                    <img src="http://lorempixel.com/1200/1000/food/" class="gl-item-image" alt="">
-                  </a>
-                </div>
-
-                <div class="gl-item-info">
-                  <div class="gl-item-caption">
-                    <h2 class="gl-item-title"><a href="gallery-single-grid.html">The Old Man Dreams</a></h2>
-                    <span class="gl-item-category"><a href="albums-archive.html">Outdoor</a></span>
-                  </div>
-                </div>
-                <!-- End gallery list item info -->
-
-              </div>
-              <!-- End gallery list item -->
-
-            </div>
-
-
-          </div>
-
-        </div>
-      </div>
     </section>
   </div>
+  <section id="gallery-list-section" class="gl-categories">
+      <div class="isotope-wrap tt-wrap">
+        <div class="isotope col-3 gutter-3">
+          <div class="isotope-items-wrap gli-colored gli-alter-5">
+            <div class="grid-sizer"></div>
+            {% for i in "xxxxxx" %}
+              {% for enterprise in enterprises %}
+                <div class="isotope-item outdoor iso-height-1">
+                  <div class="gallery-list-item">
+                    <div class="gl-item-image-wrap">
+                      <a href="{% url 'enterprise_details' enterprise.slug %}" class="gl-item-image-inner">
+                        <div class="gl-item-image bg-image" style="background-image: url({{ enterprise.main_photo.url }}); background-position: 50% 50%"></div>
+                        <span class="gl-item-image-zoom"></span>
+                      </a>
+                    </div>
+                    <div class="gl-item-info">
+                      <div class="gl-item-caption">
+                        <h2 class="gl-item-title"><a href="{% url 'enterprise_details' enterprise.slug %}">{{ enterprise.name }}</a></h2>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              {% endfor %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+  </section>
 {% endblock content %}

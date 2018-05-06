@@ -6,25 +6,22 @@ from core.models import Enterprise, Post
 
 
 def home(request):
-    return render(request, 'base/home.html')
-
-
-def enterprise_list(request):
     context = {
         'enterprises': Enterprise.objects.all()
     }
-    return render(request, 'base/enterprise_list.html', context)
+    return render(request, 'base/home.html', context)
 
 
 def enterprise_details(request, slug):
     enterprise = get_object_or_404(Enterprise, slug=slug)
-    posts = Post.objects.filter(moderated=False).order_by('-id')[:50]
+    # posts = Post.objects.filter(moderated=False).order_by('-id')[:50]
+    posts = Post.objects.all()
     i = list(range(len(posts)))
     random.shuffle(i)
     context = {
         'enterprise': enterprise,
         'posts': posts,
-        'featured': i[:3]
+        'featured': i[:30]
     }
     return render(request, 'base/enterprise_details.html', context)
 
