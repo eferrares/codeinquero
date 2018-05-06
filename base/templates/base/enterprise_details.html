@@ -93,25 +93,25 @@
 
 {% block js %}
   <script>
-    var roomName = "{{ enterprise.slug }}";
-    var chatSocket = new WebSocket(
-        'ws://' + window.location.host +
-        '/ws/empresas/obs/' + roomName + '/');
+    // var roomName = "{{ enterprise.slug }}";
+    // var chatSocket = new WebSocket(
+    //     'ws://' + window.location.host +
+    //     '/ws/empresas/obs/' + roomName + '/');
 
-    chatSocket.onopen = function () {
-      chatSocket.send("Ping");
-    };
+    // chatSocket.onopen = function () {
+    //   chatSocket.send("Ping");
+    // };
 
-    chatSocket.onmessage = function(e) {
-        var data = JSON.parse(e.data);
-        var message = data['message'];
-        console.log('data:::', data);
-        console.log('message:::', message);
-        // document.querySelector('#chat-log').value += (message + '\n');
-    };
+    // chatSocket.onmessage = function(e) {
+    //     var data = JSON.parse(e.data);
+    //     var message = data['message'];
+    //     console.log('data:::', data);
+    //     console.log('message:::', message);
+    //     // document.querySelector('#chat-log').value += (message + '\n');
+    // };
 
-    chatSocket.onclose = function(e) {
-        console.error('Chat socket closed unexpectedly');
-    };
+    // chatSocket.onclose = function(e) {
+    //     console.error('Chat socket closed unexpectedly');
+    // };
   </script>
 {% endblock js %}
