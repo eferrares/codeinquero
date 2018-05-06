@@ -8,7 +8,7 @@ def execute():
     client = StreamClient(CONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
     hashtags = ','.join(Enterprise.objects.values_list('hashtag', flat=True))
     print('hashtags: ' + hashtags)
-    resource = client.stream.statuses.filter.post(track=hashtags)
+    resource = client.stream.statuses.filter.post(track=hashtags, language='en,pt')
 
     for tweet in resource.stream():
         handle_new_tweet(tweet)
