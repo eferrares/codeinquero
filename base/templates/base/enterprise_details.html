@@ -57,18 +57,18 @@
     <!-- End page header -->
 
     <section id="gallery-list-section">
-      <div class="isotope-wrap tt-wrap"> <!-- add/remove class "tt-wrap" to enable/disable element boxed layout (class "tt-boxed" is required in <body> tag! ) -->
+      <div class="isotope-wrap"> <!-- add/remove class "tt-wrap" to enable/disable element boxed layout (class "tt-boxed" is required in <body> tag! ) -->
 
         <!-- Begin isotope
         ===================
         * Use class "gutter-1", "gutter-2" or "gutter-3" to add more space between items.
         * Use class "col-1", "col-2", "col-3", "col-4", "col-5" or "col-6" for columns.
         -->
-        <div class="isotope col-3 gutter-3">
+        <div class="isotope gutter-1 col-6">
           <div class="isotope-items-wrap gli-colored gli-alter-4">
             <div class="grid-sizer"></div>
             {% for post in posts %}
-              <div class="isotope-item black-and-white">
+              <div class="isotope-item">
                 <div class="gallery-list-item">
                   <div class="gl-item-image-wrap">
                     <a href="gallery-single-grid.html" class="gl-item-image-inner">
