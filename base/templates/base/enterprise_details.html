@@ -18,13 +18,13 @@
       * Use class "fade-out-scroll-3" to enable fade out effect if page scroll.
       * Use class "hide-ph-image" to hide page header image without removing the code.
       -->
-      <div class="page-header-image parallax-bg-3 bg-image" style="background-image: url({% static "assets/img/page-header-bg-1.jpg" %});">
+      <div class="page-header-image parallax-bg-3 bg-image" style="background-image: url({{ enterprise.main_photo.url }}); background-position: 50% 0;">
 
         <!-- Element cover
         ===================
         * You can use prepared background transparent classes depends on brightness of your page header image. More info: file "helper.css".
         -->
-        <div class="cover bg-transparent-5-dark"></div>
+        <div class="cover bg-transparent-7-5-dark"></div>
 
       </div>
       <!-- End page header image -->
@@ -39,7 +39,7 @@
         * Use class "fade-out-scroll-1" up to "fade-out-scroll-6" to enable fade out effect if page scroll.
         -->
         <div class="page-header-caption ph-caption-lg parallax-5 fade-out-scroll-4">
-          <h1 class="page-header-title">Quero Educação</h1>
+          <h1 class="page-header-title">{{ enterprise.name }}</h1>
           <hr class="hr-short">
 
           <!-- Use data attributes to set text maximum characters or words (example: data-max-characters="120" or data-max-words="40") -->

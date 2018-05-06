@@ -8,9 +8,13 @@
    ========================================================================== */
 
 .header-logo {
-  color: #fff;
+  color: #000;
   font-size: 36px;
   font-weight: bold;
+}
+
+.tt-dark-style .header-logo {
+  color: #fff;
 }
 
 .header-logo--secondary {
