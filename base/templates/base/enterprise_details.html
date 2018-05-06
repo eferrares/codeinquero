@@ -65,16 +65,18 @@
         * Use class "col-1", "col-2", "col-3", "col-4", "col-5" or "col-6" for columns.
         -->
         <div class="isotope gutter-1 col-6">
-          <div class="isotope-items-wrap gli-colored gli-alter-4">
+          <div class="isotope-items-wrap gli-colored gli-alter-4" id="grid">
             <div class="grid-sizer"></div>
+
             {% for post in posts %}
-              <div class="isotope-item">
+              <div class="isotope-item post" data-id="{{ post.id }}">
                 <div class="gallery-list-item">
                   <div class="gl-item-image-wrap">
                     <a href="gallery-single-grid.html" class="gl-item-image-inner">
                       <img src="{{ post.file }}" class="gl-item-image" alt="">
                     </a>
                   </div>
+
                   <div class="gl-item-info">
                     <div class="gl-item-caption">
                       <h2 class="gl-item-title"><a href="gallery-single-grid.html">{{ post.text }}</a></h2>
@@ -84,6 +86,7 @@
                 </div>
               </div>
             {% endfor %}
+
           </div>
         </div>
       </div>
@@ -92,26 +95,5 @@
 {% endblock content %}
 
 {% block js %}
-  <script>
-    // var roomName = "{{ enterprise.slug }}";
-    // var chatSocket = new WebSocket(
-    //     'ws://' + window.location.host +
-    //     '/ws/empresas/obs/' + roomName + '/');
-
-    // chatSocket.onopen = function () {
-    //   chatSocket.send("Ping");
-    // };
-
-    // chatSocket.onmessage = function(e) {
-    //     var data = JSON.parse(e.data);
-    //     var message = data['message'];
-    //     console.log('data:::', data);
-    //     console.log('message:::', message);
-    //     // document.querySelector('#chat-log').value += (message + '\n');
-    // };
-
-    // chatSocket.onclose = function(e) {
-    //     console.error('Chat socket closed unexpectedly');
-    // };
-  </script>
+  <script src="/static/js/poller.js"></script>
 {% endblock js %}
