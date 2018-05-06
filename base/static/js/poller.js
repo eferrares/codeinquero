@@ -15,7 +15,7 @@ $(document).ready(function () {
     for (var i = 1; i <= count; i++) {
       var el = posts[posts.length - i];
       el.parentNode.removeChild(el);
-      $grid.isotope('remove', $(el);
+      $grid.isotope('remove', $(el));
     }
   }
 
