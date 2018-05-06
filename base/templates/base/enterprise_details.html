@@ -4,6 +4,7 @@
   <div id="body-content">
 
 
+    {% if not embedded %}
     <!-- ========================
     ///// Begin page header /////
     =============================
@@ -55,6 +56,7 @@
 
     </section>
     <!-- End page header -->
+    {% endif %}
 
     <section id="gallery-list-section">
       <div class="isotope-wrap"> <!-- add/remove class "tt-wrap" to enable/disable element boxed layout (class "tt-boxed" is required in <body> tag! ) -->
