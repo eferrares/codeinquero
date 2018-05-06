@@ -39,7 +39,6 @@ INSTALLED_APPS = (
     # Third-party apps, patches, fixes
     'djcelery',
     'compressor',
-    'channels',
 
     # Application base, containing global templates.
     'base',
@@ -206,16 +205,6 @@ except:
     SECRET_KEY = 'fqqv^ca)ailohed@t3*p*a@23esv^+2!7h$hp2_rho_0zq83i('
 
 INTERNAL_IPS = ('127.0.0.1')
-
-ASGI_APPLICATION = "codeinquero.routing.application"
-CHANNEL_LAYERS = {
-    'default': {
-        'BACKEND': 'channels_redis.core.RedisChannelLayer',
-        'CONFIG': {
-            "hosts": [('127.0.0.1', 6379)],
-        },
-    },
-}
 
 # Enable this option for memcached
 #CACHE_BACKEND= "memcached://127.0.0.1:11211/"
