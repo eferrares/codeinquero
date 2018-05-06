@@ -1,4 +1,5 @@
 import json
+import random
 from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse
 from core.models import Enterprise, Post
@@ -17,10 +18,14 @@ def enterprise_list(request):
 
 def enterprise_details(request, slug):
     enterprise = get_object_or_404(Enterprise, slug=slug)
+    posts = Post.objects.order_by('-id')[:50]
+    i = list(range(len(posts)))
+    random.shuffle(i)
     context = {
         'enterprise': enterprise,
-        'posts': enterprise.post_set.order_by('-id')[:50]
-        # 'posts': Post.objects.order_by('-id')[:50]
+        # 'posts': enterprise.post_set.order_by('-id')[:50]
+        'posts': posts,
+        'featured': i[:3]
     }
     return render(request, 'base/enterprise_details.html', context)
 

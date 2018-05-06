@@ -69,7 +69,8 @@
             <div class="grid-sizer"></div>
 
             {% for post in posts %}
-              <div class="isotope-item post" data-id="{{ post.id }}">
+
+              <div class="isotope-item post {% if forloop.counter0 in featured %} width-2 {% endif %}" data-id="{{ post.id }}">
                 <div class="gallery-list-item">
 
                   {% if post.file %}
