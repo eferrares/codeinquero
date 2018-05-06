@@ -61,15 +61,11 @@ $(document).ready(function () {
   }
 
   function addNewPosts(posts) {
-    var appended = [];
-
     posts.forEach(function (post) {
       var el = createPostElement(post);
       $('#grid').prepend(el);
       $grid.isotope('prepended', el);
     });
-
-    return appended;
   }
 
   function updatePosts() {
@@ -79,7 +75,10 @@ $(document).ready(function () {
     fetchNewPosts(lastPostId)
       .done(function (response) {
         var newPosts = JSON.parse(response);
-        removeOldPosts(newPosts.length);
+
+        if ($('.post').length >= maxPosts) {
+          removeOldPosts(newPosts.length);
+        }
         addNewPosts(newPosts);
       })
       .fail(function (err) {
