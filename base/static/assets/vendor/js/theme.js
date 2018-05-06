@@ -42,19 +42,27 @@
 	// ===================================================================
 	// BEGIN CODE FOR DEMO SITE ONLY! Light Switcher (Dark & Light style)
 
-	$('body').append(" \
-		<div class='light-switcher'> \
-			<img class='light-img' src='assets/img/light-switcher/light-style.png' title='Switch to light style'> \
-			<img class='dark-img' src='assets/img/light-switcher/dark-style.png' title='Switch to dark style'> \
-		</div>"
-	);
+  $(".js-light-switcher").on("click",function(e) {
+    e.preventDefault();
+    $("body").toggleClass("tt-dark-style");
+    $("body").hasClass("tt-dark-style") ? (localStorage.setItem("darkstyle", "true"),
+    $(".light-switcher").addClass("is-dark")) : (localStorage.setItem("darkstyle", "false"),
+    $(".light-switcher").removeClass("is-dark"));
+  });
 
-	$(".light-switcher").on("click",function() {
-		$("body").toggleClass("tt-dark-style");
-		$("body").hasClass("tt-dark-style") ? (localStorage.setItem("darkstyle", "true"),
-		$(".light-switcher").addClass("is-dark")) : (localStorage.setItem("darkstyle", "false"),
-		$(".light-switcher").removeClass("is-dark"));
-	});
+	// $('body').append(" \
+	// 	<div class='light-switcher'> \
+	// 		<img class='light-img' src='assets/img/light-switcher/light-style.png' title='Switch to light style'> \
+	// 		<img class='dark-img' src='assets/img/light-switcher/dark-style.png' title='Switch to dark style'> \
+	// 	</div>"
+	// );
+
+	// $(".light-switcher").on("click",function() {
+	// 	$("body").toggleClass("tt-dark-style");
+	// 	$("body").hasClass("tt-dark-style") ? (localStorage.setItem("darkstyle", "true"),
+	// 	$(".light-switcher").addClass("is-dark")) : (localStorage.setItem("darkstyle", "false"),
+	// 	$(".light-switcher").removeClass("is-dark"));
+	// });
 
 	// localStorage (not work in IE on localhost!)
 	var d = localStorage.getItem("darkstyle");
