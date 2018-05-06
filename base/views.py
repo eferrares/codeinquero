@@ -29,9 +29,5 @@ def enterprise_new_posts(request, slug):
     enterprise = get_object_or_404(Enterprise, slug=slug)
     greater_than = request.GET.get('greater_than')
 
-    post = Post.objects.filter(id__gt=greater_than).order_by('-id').values('id', 'username', 'user_display_name', 'file', 'text').first()
-
-    if post is None:
-        return JsonResponse(json.dumps([]), safe=False)
-
-    return JsonResponse(json.dumps([post]), safe=False)
+    posts = list(Post.objects.filter(id__gt=greater_than).order_by('-id').values('id', 'username', 'user_display_name', 'file', 'text')[:1])
+    return JsonResponse(json.dumps(posts), safe=False)
