@@ -381,7 +381,7 @@
 	$container.imagesLoaded(function() {
 		$container.isotope({
 			itemSelector: '.isotope-item',
-			transitionDuration: '0.7s',
+			transitionDuration: '1.2s',
 			masonry: {
 				columnWidth: '.grid-sizer',
 				horizontalOrder: false
