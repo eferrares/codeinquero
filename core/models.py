@@ -68,6 +68,10 @@ class Enterprise(models.Model):
     hashtag = models.CharField(max_length=100, null=True, blank=True)
     description = models.TextField(null=True, blank=True)
 
+    class Meta:
+        verbose_name = 'Startup'
+        verbose_name_plural = 'Startups'
+
     def __str__(self):
         return self.name
 
@@ -82,6 +86,10 @@ class Post(models.Model):
     show = models.BooleanField(default=True)
     external_id = models.BigIntegerField(null=True)
     moderated = models.BooleanField(default=True)
+
+    class Meta:
+        verbose_name = 'Postagem'
+        verbose_name_plural = 'Postagens'
 
     def is_video(self):
         return self.file.endswith('.mp4')

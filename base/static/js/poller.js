@@ -6,7 +6,7 @@ $(document).ready(function () {
   }
 
   function fetchNewPosts(lastPostId) {
-    return $.get(document.location.pathname + '/new_posts?greater_than=' + '2');
+    return $.get(document.location.pathname + '/new_posts?greater_than=' + lastPostId);
   }
 
   function removeOldPosts(count) {

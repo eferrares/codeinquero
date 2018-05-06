@@ -88,13 +88,13 @@
                     <div class="gl-item-info">
                       <div class="gl-item-caption">
                         <h2 class="gl-item-title"><a href="gallery-single-grid.html">{{ post.text }}</a></h2>
-                        <span class="gl-item-category"><a href="albums-archive.html">{{ post.user_display_name }}</a></span>
+                        <span class="gl-item-category"><a href="albums-archive.html">{{ post.user_display_name }} {{ post.id }}</a></span>
                       </div>
                     </div>
                   {% else %}
                     <div class="text-box" style="background-color: {{ post.random_color }}">
                       <h2 class="gl-item-title"><a href="gallery-single-grid.html">{{ post.text }}</a></h2>
-                      <span class="gl-item-category"><a href="albums-archive.html">{{ post.user_display_name }}</a></span>
+                      <span class="gl-item-category"><a href="albums-archive.html">{{ post.user_display_name }} {{ post.id }}</a></span>
                     </div>
                   {% endif %}
                 </div>
