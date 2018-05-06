@@ -3,6 +3,11 @@ from core.models import Enterprise, Post
 
 
 def prepare_post_data(tweet, enterprise):
+    if tweet['entities']:
+        media_file = tweet['entities']['media'][0]['media_url_https']
+    else:
+        media_file = None
+
     return {
         'enterprise': enterprise,
         'username': tweet['user']['screen_name'],
@@ -10,26 +15,25 @@ def prepare_post_data(tweet, enterprise):
         'user_display_name': tweet['user']['name'],
         'text': tweet['text'],
         'date_posted': datetime.strptime(tweet['created_at'], '%a %b %d %H:%M:%S %z %Y'),
-        'file': tweet['entities']['media'][0]['media_url_https'],
+        'file': media_file,
         'external_id': tweet['id']
     }
 
 
 def get_enterprise(tweet):
     hashtags = tweet['entities']['hashtags']
+    print('Hashtags::::')
+    print(hashtags)
     for hashtag in hashtags:
-        enterprise = Enterprise.objects.filter(hashtag=hashtag['text'].lower())
+        actual_hashtag = ('#' + hashtag['text']).lower()
+        enterprise = Enterprise.objects.filter(hashtag=actual_hashtag)
         if enterprise:
             return enterprise[0]
     return None
 
 
 def is_tweet_valid(tweet):
-    if 'media' not in tweet['entities']:
-        print('Tweet without media file {}'.format(tweet['id']))
-        return False
-
-    if Post.objects.filter(external_id = tweet['id']).exists():
+    if Post.objects.filter(external_id=tweet['id']).exists():
         print('Tweet already processed {}'.format(tweet['id']))
         return False
 

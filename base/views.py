@@ -19,8 +19,8 @@ def enterprise_details(request, slug):
     enterprise = get_object_or_404(Enterprise, slug=slug)
     context = {
         'enterprise': enterprise,
-        # 'posts': enterprise.post_set.filter(file__isnull=False)
-        'posts': Post.objects.order_by('-id')[:50]
+        'posts': enterprise.post_set.order_by('-id')[:50]
+        # 'posts': Post.objects.order_by('-id')[:50]
     }
     return render(request, 'base/enterprise_details.html', context)
 
