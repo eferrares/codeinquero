@@ -19,27 +19,45 @@ $(document).ready(function () {
   }
 
   function createPostElement(post) {
-    return $('<div class="isotope-item post" data-id="' + post.id + '">').append(
-      $('<div class="gallery-list-item"></div>').append(
-        $('<div class="gl-item-image-wrap"></div>').append(
-          $('<a href="#" class="gl-item-image-inner"></a>').append(
-            $('<img src="' + post.file + '" class="gl-item-image" />')
-          )
-        )
-      ).append(
-        $('<div class="gl-item-info"></div>').append(
-          $('<div class="gl-item-caption">').append(
-            $('<h2 class="gl-item-title">').append(
-              $('<a href="#">' + post.text + '</a>')
-            )
-          ).append(
-            $('<span class="gl-item-category">').append(
-              $('<a href="#">' + post.user_display_name + '</a>')
+    if (post.file) {
+      return $('<div class="isotope-item post" data-id="' + post.id + '">').append(
+        $('<div class="gallery-list-item"></div>').append(
+          $('<div class="gl-item-image-wrap"></div>').append(
+            $('<a href="#" class="gl-item-image-inner"></a>').append(
+              $('<img src="' + post.file + '" class="gl-item-image" />')
             )
           )
+        ).append(
+          $('<div class="gl-item-info"></div>').append(
+            $('<div class="gl-item-caption">').append(
+              $('<h2 class="gl-item-title">').append(
+                $('<a href="#">' + post.text + '</a>')
+              )
+            ).append(
+              $('<span class="gl-item-category">').append(
+                $('<a href="#">' + post.user_display_name + '</a>')
+              )
+            )
+          )
         )
-      )
-    );
+      );
+    } else {
+      return $('<div class="isotope-item post" data-id="' + post.id + '">').append(
+        $('<div class="gallery-list-item"></div>').append(
+          $('<div class="text-box">').append(
+            $('<div class="gl-item-caption">').append(
+              $('<h2 class="gl-item-title">').append(
+                $('<a href="#">' + post.text + '</a>')
+              )
+            ).append(
+              $('<span class="gl-item-category">').append(
+                $('<a href="#">' + post.user_display_name + '</a>')
+              )
+            )
+          )
+        )
+      );
+    }
   }
 
   function addNewPosts(posts) {
