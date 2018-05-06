@@ -208,6 +208,14 @@ except:
 INTERNAL_IPS = ('127.0.0.1')
 
 ASGI_APPLICATION = "codeinquero.routing.application"
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],
+        },
+    },
+}
 
 # Enable this option for memcached
 #CACHE_BACKEND= "memcached://127.0.0.1:11211/"
