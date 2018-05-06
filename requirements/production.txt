@@ -31,10 +31,8 @@ django-debug-toolbar
 # Feature testing
 #django-waffle
 anyjson
-channels
 birdy
 Pillow
-channels_redis
 # requests
 requests
 bs4
