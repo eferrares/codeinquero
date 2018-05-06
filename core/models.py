@@ -68,11 +68,12 @@ class Enterprise(models.Model):
 
 class Post(models.Model):
     enterprise = models.ForeignKey(Enterprise, null=True, blank=True)
-    file = models.FileField(max_length=200, null=True)
+    file = models.URLField(max_length=200, null=True)
     username = models.CharField(max_length=200)
     user_display_name = models.CharField(max_length=100, null=True)
     text = models.TextField()
     date_posted = models.DateTimeField(default=datetime.now())
+    show = models.BooleanField(default=True)
 
 
 class Like(models.Model):
@@ -81,3 +82,21 @@ class Like(models.Model):
 
 class Coment(models.Model):
     post = models.ForeignKey(Post)
+
+
+class Moderation(models.Model):
+    enterprise = models.ForeignKey(Enterprise)
+    post = models.ForeignKey(Post, null=True, blank=True)
+    username = models.CharField(max_length=200, null=True, blank=True)
+    accepted = models.BooleanField(default=False)
+
+    def save(self):
+        super(Moderation, self).save()
+        if self.post:
+            self.post.show = self.accepted
+            self.post.save()
+        elif self.username:
+            posts = Post.objects.filter(username=self.username)
+            for post in posts:
+                post.show = self.accepted
+                post.save()

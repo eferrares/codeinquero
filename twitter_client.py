@@ -33,7 +33,7 @@ def prepare_post_data(tweet):
 
 
 def is_tweet_valid(tweet):
-    return True or 'media' in tweet['entities']
+    return 'media' in tweet['entities']
 
 
 def handle_new_tweet(tweet):
