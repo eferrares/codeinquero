@@ -4,9 +4,9 @@ from google.cloud import language
 from google.cloud.language import enums
 from google.cloud.language import types
 
-APPROVED = 1
-NEUTRAL = 2
-REJECTED = 3
+APPROVED = 2
+NEUTRAL = 1
+REJECTED = 0
 
 class PostClassifier(object):
 
