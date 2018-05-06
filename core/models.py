@@ -67,9 +67,10 @@ class Enterprise(models.Model):
 
 
 class Post(models.Model):
-    enterprise = models.ForeignKey(Enterprise)
-    file = models.FileField(max_length=200)
+    enterprise = models.ForeignKey(Enterprise, null=True, blank=True)
+    file = models.FileField(max_length=200, null=True)
     username = models.CharField(max_length=200)
+    user_display_name = models.CharField(max_length=100, null=True)
     text = models.TextField()
     date_posted = models.DateTimeField(default=datetime.now())
 

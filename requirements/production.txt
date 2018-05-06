@@ -34,4 +34,10 @@ anyjson
 channels
 birdy
 Pillow
+<<<<<<< Updated upstream
 channels_redis
+=======
+
+# requests
+requests
+>>>>>>> Stashed changes
