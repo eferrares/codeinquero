@@ -38,3 +38,6 @@ channels_redis
 # requests
 requests
 bs4
+
+# google cloud
+google-cloud
