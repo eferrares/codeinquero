@@ -112,7 +112,7 @@ class HashTagSearch(metaclass=ABCMeta):
         potential_query_ids = self.get_query_id(response)
         shared_data = self.extract_shared_data(response)
 
-        if ['entry_data'] in shared_data and 'TagPage' in shared_data['entry_data']:
+        if 'entry_data' in shared_data and 'TagPage' in shared_data['entry_data']:
             media = shared_data['entry_data']['TagPage'][0]['graphql']['hashtag']['edge_hashtag_to_media']['edges']
 
             posts = []
