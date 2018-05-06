@@ -44,7 +44,7 @@ $(document).ready(function () {
     } else {
       return $('<div class="isotope-item post" data-id="' + post.id + '">').append(
         $('<div class="gallery-list-item"></div>').append(
-          $('<div class="text-box">').append(
+          $('<div class="text-box"' + post.random_color + '">').append(
             $('<div class="gl-item-caption">').append(
               $('<h2 class="gl-item-title">').append(
                 $('<a href="#">' + post.text + '</a>')

@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import random
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.db import models
 from django.utils import timezone
@@ -84,6 +85,9 @@ class Post(models.Model):
 
     def is_video(self):
         return self.file.endswith('.mp4')
+
+    def random_color(self):
+        return random.choice(['#9C1140', '#5025AF', '#501201', '#08c1b8'])
 
 
 class Like(models.Model):
