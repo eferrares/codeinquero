@@ -251,7 +251,7 @@ class HashTagSearch(metaclass=ABCMeta):
         :param instagram_results: A list of Instagram Posts
         """
         for result in instagram_results:
-            if not self.already_saved(result.post_id) or result.is_video:
+            if not self.already_saved(result.post_id):
                 post = Post()
                 post.enterprise = self.get_enterprise(result.hashtags())
                 post.username = result.user.id
