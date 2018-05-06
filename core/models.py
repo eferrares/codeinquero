@@ -65,6 +65,7 @@ class Enterprise(models.Model):
     slug = models.SlugField(max_length=50)
     main_photo = models.ImageField(max_length=200, null=True, blank=True)
     hashtag = models.CharField(max_length=100, null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return self.name

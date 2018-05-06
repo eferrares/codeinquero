@@ -12,3 +12,12 @@
   font-size: 36px;
   font-weight: bold;
 }
+
+.header-logo--secondary {
+  color: #08c1b8;
+}
+
+.text-box {
+  background-color: #08c1b8;
+  padding: 15px;
+}
