@@ -34,3 +34,4 @@ anyjson
 channels
 birdy
 Pillow
+channels_redis
