@@ -3,6 +3,7 @@ import random
 from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse
 from core.models import Enterprise, Post
+from django.views.decorators.clickjacking import xframe_options_exempt
 
 
 def home(request):
@@ -12,6 +13,7 @@ def home(request):
     return render(request, 'base/home.html', context)
 
 
+@xframe_options_exempt
 def enterprise_details(request, slug):
     enterprise = get_object_or_404(Enterprise, slug=slug)
     posts = Post.objects.filter(enterprise=enterprise, show=True, moderated=False).order_by('-id')[:50]
@@ -20,7 +22,8 @@ def enterprise_details(request, slug):
     context = {
         'enterprise': enterprise,
         'posts': posts,
-        'featured': i[:5]
+        'featured': i[:5],
+        'embedded': request.GET.get('mode') == 'embedded'
     }
     return render(request, 'base/enterprise_details.html', context)
 
