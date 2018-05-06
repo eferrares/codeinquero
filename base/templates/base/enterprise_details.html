@@ -98,6 +98,10 @@
         'ws://' + window.location.host +
         '/ws/empresas/obs/' + roomName + '/');
 
+    chatSocket.onopen = function () {
+      chatSocket.send("Ping");
+    };
+
     chatSocket.onmessage = function(e) {
         var data = JSON.parse(e.data);
         var message = data['message'];

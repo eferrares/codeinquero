@@ -6,7 +6,7 @@ import json
 class EnterpriseConsumer(WebsocketConsumer):
     def connect(self):
         self.room_name = self.scope['url_route']['kwargs']['room_name']
-        self.room_group_name = 'enterprise_%s' % self.room_name
+        self.room_group_name = '%s' % self.room_name
         async_to_sync(self.channel_layer.group_add)(
             self.room_group_name,
             self.channel_name
@@ -20,8 +20,7 @@ class EnterpriseConsumer(WebsocketConsumer):
         )
 
     def receive(self, text_data):
-        text_data_json = json.loads(text_data)
-        message = text_data_json['message']
+        message = text_data
         async_to_sync(self.channel_layer.group_send)(
             self.room_group_name,
             {
