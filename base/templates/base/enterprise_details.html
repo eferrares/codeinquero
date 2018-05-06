@@ -64,39 +64,40 @@
         * Use class "gutter-1", "gutter-2" or "gutter-3" to add more space between items.
         * Use class "col-1", "col-2", "col-3", "col-4", "col-5" or "col-6" for columns.
         -->
+
         <div class="isotope gutter-1 col-6">
           <div class="isotope-items-wrap gli-colored gli-alter-4" id="grid">
             <div class="grid-sizer"></div>
+
 
             {% for post in posts %}
 
               <div class="isotope-item post {% if forloop.counter0 in featured %} width-2 {% endif %}" data-id="{{ post.id }}">
                 <div class="gallery-list-item">
-
+                  <a href="#modal" class="gl-item-image-inner open-modal">
                   {% if post.file %}
                     <div class="gl-item-image-wrap">
-                        {% if post.is_video %}
-                           <video class="gl-item-image-inner" controls>
-                            <source src="{{ post.file }}" type="video/mp4">
-                          </video>
-                        {% else %}
-                          <a href="gallery-single-grid.html" class="gl-item-image-inner">
-                              <img src="{{ post.file }}" class="gl-item-image" alt="">
-                          </a>
-                        {% endif %}
+                      {% if post.is_video %}
+                         <video class="gl-item-image-inner" controls>
+                          <source src="{{ post.file }}" type="video/mp4">
+                        </video>
+                      {% else %}
+                        <img src="{{ post.file }}" class="gl-item-image" alt="">
+                      {% endif %}
                     </div>
                     <div class="gl-item-info">
                       <div class="gl-item-caption">
-                        <h2 class="gl-item-title"><a href="gallery-single-grid.html">{{ post.text }}</a></h2>
-                        <span class="gl-item-category"><a href="albums-archive.html">{{ post.user_display_name }} {{ post.id }}</a></span>
+                        <h2 class="gl-item-title">{{ post.text }}</h2>
+                        <span class="gl-item-category">{{ post.user_display_name }} {{ post.id }}</span>
                       </div>
                     </div>
                   {% else %}
                     <div class="text-box" style="background-color: {{ post.random_color }}">
-                      <h2 class="gl-item-title"><a href="gallery-single-grid.html">{{ post.text }}</a></h2>
-                      <span class="gl-item-category"><a href="albums-archive.html">{{ post.user_display_name }} {{ post.id }}</a></span>
+                      <h2 class="gl-item-title">{{ post.text }}</h2>
+                      <span class="gl-item-category">{{ post.user_display_name }} {{ post.id }}</span>
                     </div>
                   {% endif %}
+                  </a>
                 </div>
               </div>
             {% endfor %}
@@ -105,7 +106,19 @@
         </div>
       </div>
     </section>
+
+    <div id="modal" class="modal-wrapper closed">
+      <div class="modal-1">
+        <a href="#" class="modal-close">&times;</a>
+        <div class="js-modal-content">
+
+        </div>
+      </div>
+    </div>
   </div>
+
+
+
 {% endblock content %}
 
 {% block js %}
