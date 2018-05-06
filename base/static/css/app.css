@@ -6,3 +6,9 @@
    css/less/bootstrap.less file.
 
    ========================================================================== */
+
+.header-logo {
+  color: #fff;
+  font-size: 36px;
+  font-weight: bold;
+}
