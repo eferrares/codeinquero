@@ -18,6 +18,7 @@ import sys
 import pytz
 from abc import ABCMeta, abstractmethod
 from json import JSONDecodeError
+import urllib
 
 import bs4
 import requests
@@ -126,10 +127,11 @@ class HashTagSearch(metaclass=ABCMeta):
         for potential_id in potential_query_ids:
             variables = {
                 'tag_name': tag,
-                'first': 4,
+                'first': 7,
                 'after': end_cursor
             }
-            url = "https://www.instagram.com/graphql/query/?query_id=%s&variables=%s" % (potential_id, json.dumps(variables))
+            variables = urllib.parse.urlencode(variables)
+            url = "https://www.instagram.com/graphql/query/?query_hash=%s&variables=%s" % (potential_id, json.dumps(variables))
             try:
                 data = requests.get(url).json()
                 if data['status'] == 'fail':
