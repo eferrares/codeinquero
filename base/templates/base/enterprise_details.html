@@ -71,18 +71,26 @@
             {% for post in posts %}
               <div class="isotope-item post" data-id="{{ post.id }}">
                 <div class="gallery-list-item">
-                  <div class="gl-item-image-wrap">
-                    <a href="gallery-single-grid.html" class="gl-item-image-inner">
-                      <img src="{{ post.file }}" class="gl-item-image" alt="">
-                    </a>
-                  </div>
 
-                  <div class="gl-item-info">
-                    <div class="gl-item-caption">
+                  {% if post.file %}
+                    <div class="gl-item-image-wrap">
+                      <a href="gallery-single-grid.html" class="gl-item-image-inner">
+                        <img src="{{ post.file }}" class="gl-item-image" alt="">
+                      </a>
+                    </div>
+                    <div class="gl-item-info">
+                      <div class="gl-item-caption">
+                        <h2 class="gl-item-title"><a href="gallery-single-grid.html">{{ post.text }}</a></h2>
+                        <span class="gl-item-category"><a href="albums-archive.html">{{ post.user_display_name }}</a></span>
+                      </div>
+                    </div>
+                  {% else %}
+                    <div class="text-box">
                       <h2 class="gl-item-title"><a href="gallery-single-grid.html">{{ post.text }}</a></h2>
                       <span class="gl-item-category"><a href="albums-archive.html">{{ post.user_display_name }}</a></span>
                     </div>
-                  </div>
+                  {% endif %}
+
                 </div>
               </div>
             {% endfor %}
