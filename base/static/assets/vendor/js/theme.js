@@ -381,24 +381,29 @@
 		});
 	});
 
-	// Filter
-	$('.isotope-filter-links a').on("click",function(){
-		var selector = $(this).attr('data-filter');
-		$container.isotope({
-			filter: selector
-		});
-		return false;
-	});
+  $('.botaomaneiro').on('click', function() {
+    console.log('teste');
+    $container.isotope('shuffle');
+  });
 
-	// Filter item active
-	var filterItemActive = $('.isotope-filter-links a');
-	filterItemActive.on('click', function(){
-		var $this = $(this);
-		if ( !$this.hasClass('active')) {
-			filterItemActive.removeClass('active');
-			$this.addClass('active');
-		}
-	});
+	// // Filter
+	// $('.isotope-filter-links a').on("click",function(){
+	// 	var selector = $(this).attr('data-filter');
+	// 	$container.isotope({
+	// 		filter: selector
+	// 	});
+	// 	return false;
+	// });
+
+	// // Filter item active
+	// var filterItemActive = $('.isotope-filter-links a');
+	// filterItemActive.on('click', function(){
+	// 	var $this = $(this);
+	// 	if ( !$this.hasClass('active')) {
+	// 		filterItemActive.removeClass('active');
+	// 		$this.addClass('active');
+	// 	}
+	// });
 
 
 	// If "isotope-top-content" exist add class ".iso-top-content-on" to <body>.
