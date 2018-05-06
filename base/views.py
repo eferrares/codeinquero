@@ -17,7 +17,7 @@ def enterprise_details(request, slug):
     enterprise = get_object_or_404(Enterprise, slug=slug)
     context = {
         'enterprise': enterprise,
-        # 'posts': enterprise.post_set.filter(file__isnull=False)
-        'posts': Post.objects.all()
+        'posts': enterprise.post_set.all()
+        # 'posts': Post.objects.all()
     }
     return render(request, 'base/enterprise_details.html', context)
