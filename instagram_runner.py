@@ -286,4 +286,4 @@ if __name__ == '__main__':
         print('has', hashtags)
         for hashtag in hashtags:
             HashTagSearchExample().extract_recent_tag(hashtag[1:])
-        time.sleep(5000)
+        time.sleep(2)
