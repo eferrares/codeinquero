@@ -47,6 +47,10 @@ def get_enterprise(tweet):
 
 
 def is_tweet_valid(tweet):
+    if tweet['in_reply_to_status_id'] is not None:
+        print('Status {} is a retweet'.format(tweet['id']))
+        return False
+
     if Post.objects.filter(external_id=tweet['id']).exists():
         print('Tweet already processed {}'.format(tweet['id']))
         return False
