@@ -1,6 +1,6 @@
 from datetime import datetime
 from core.models import Enterprise, Post
-from twitter.post_classifier import PostClassifier, APPROVED
+from twitter.post_classifier import PostClassifier, REJECTED
 from twitter.explict_content_detector import ExplicitContentDetector
 
 
@@ -10,18 +10,17 @@ detector = ExplicitContentDetector()
 
 def prepare_post_data(tweet, enterprise):
     classification = classifier.classify(tweet['text'])
-    print(classification)
-    moderate = classification != APPROVED
+    show = classification > REJECTED
 
 
     if 'media' in tweet['entities']:
         media_file = tweet['entities']['media'][0]['media_url_https']
         explicit_content_detected = detector.detect_explict_content(media_file)
-        moderate = moderate or explicit_content_detected
+        show = show or not explicit_content_detected
     else:
         media_file = None
 
-    print('Tweet {} moderate {} text {}'.format(tweet['id'], moderate, tweet['text']))
+    print('Tweet {} show {} text {}'.format(tweet['id'], show, tweet['text']))
 
     return {
         'enterprise': enterprise,
@@ -32,7 +31,8 @@ def prepare_post_data(tweet, enterprise):
         'date_posted': datetime.strptime(tweet['created_at'], '%a %b %d %H:%M:%S %z %Y'),
         'file': media_file,
         'external_id': tweet['id'],
-        'moderated': moderate
+        'moderated': False,
+        'show': show
     }
 
 

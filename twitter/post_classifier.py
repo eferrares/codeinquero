@@ -4,9 +4,9 @@ from google.cloud import language
 from google.cloud.language import enums
 from google.cloud.language import types
 
-APPROVED = 'approved'
-MODERATED = 'moderated'
-REJECTED = 'rejected'
+APPROVED = 1
+NEUTRAL = 2
+REJECTED = 3
 
 class PostClassifier(object):
 
@@ -30,7 +30,7 @@ class PostClassifier(object):
         if score >= 0.5:
             return APPROVED
         if score >= 0:
-            return MODERATED
+            return NEUTRAL
         return REJECTED
 
 

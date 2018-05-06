@@ -21,7 +21,7 @@ class ExplicitContentDetector(object):
             values = [result.adult, result.spoof, result.medical, result.violence]
             print(values)
 
-            return any(filter(lambda value: value >= 3, values))
+            return any(filter(lambda value: value >= 4, values))
         except Exception as e:
             print(e)
             return False
