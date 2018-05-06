@@ -30,18 +30,18 @@ conf = {}
 
 env.db_pass = 'UltraHardPassForProject'  # CHANGEME
 env.admin_pass = conf.get("ADMIN_PASS", None)
-env.user = 'root'
+env.user = 'ubuntu'
 env.password = None
 env.key_filename = None
-env.hosts = ['104.236.47.124']  # CHANGEME
+env.hosts = ['ec2-54-87-135-253.compute-1.amazonaws.com']  # CHANGEME
 
 env.proj_name = env.proj_app
 env.venv_home = "/home/%s/.virtualenvs" % env.user
 env.venv_path = join(env.venv_home, env.proj_name)
 env.proj_path = "/home/%s/%s" % (env.user, env.proj_name)
 env.manage = "%s/bin/python %s/manage.py" % (env.venv_path, env.proj_path)
-# env.domains = ['codeinquero.com.br', 'www.codeinquero.com.br']
-env.domains = ['104.236.47.124']  # CHANGEME
+# env.domains = ['ec2-54-87-135-253.compute-1.amazonaws.com', ec2-54-87-135-253.compute-1.amazonaws.com']
+env.domains = ['ec2-54-87-135-253.compute-1.amazonaws.com']  # CHANGEME
 env.domains_nginx = " ".join(env.domains)
 env.domains_regex = "|".join(env.domains)
 env.domains_python = ", ".join(["'%s'" % s for s in env.domains])
@@ -52,7 +52,7 @@ env.reqs_path = 'requirements/local.txt'
 env.locale = "en_US.UTF-8"
 env.num_workers = "multiprocessing.cpu_count() * 2 + 1"
 
-env.secret_key = 'cd4ctoq-l$&^w=o)f9apoix+&-exaj1b0u4r8icqeb8dsmeb62'
+env.secret_key = 'cd4ctoq-lab^w=o)f9apoix+c-exaj1b0u4r8icqeb8dsmeb62'
 env.nevercache_key = ""
 
 # Remote git repos need to be "bare" and reside separated from the project
@@ -476,13 +476,13 @@ def create():
     # Create DB and DB user
     pw = db_pass()
     user_sql_args = (env.proj_name, pw.replace("'", "\'"))
-    user_sql = "CREATE USER %s WITH ENCRYPTED PASSWORD '%s';" % user_sql_args
-    psql(user_sql, show=False)
-    shadowed = "*" * len(pw)
-    print_command(user_sql.replace("'%s'" % pw, "'%s'" % shadowed))
-    psql("CREATE DATABASE %s WITH OWNER %s ENCODING = 'UTF8' "
-         "LC_CTYPE = '%s' LC_COLLATE = '%s' TEMPLATE template0;" %
-         (env.proj_name, env.proj_name, env.locale, env.locale))
+    # user_sql = "CREATE USER %s WITH ENCRYPTED PASSWORD '%s';" % user_sql_args
+    # psql(user_sql, show=False)
+    # shadowed = "*" * len(pw)
+    # print_command(user_sql.replace("'%s'" % pw, "'%s'" % shadowed))
+    # psql("CREATE DATABASE %s WITH OWNER %s ENCODING = 'UTF8' "
+    #      "LC_CTYPE = '%s' LC_COLLATE = '%s' TEMPLATE template0;" %
+    #      (env.proj_name, env.proj_name, env.locale, env.locale))
 
     # Set up SSL certificate
     if not env.ssl_disabled:

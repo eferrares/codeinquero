@@ -184,7 +184,7 @@ MANAGERS = ADMINS
 # SECURITY WARNING: don't run with debug turned on in production!
 # Debugging displays nice error messages, but leaks memory. Set this to False
 # on all server instances and True only for development.
-DEBUG = TEMPLATE_DEBUG = False
+DEBUG = TEMPLATE_DEBUG = True
 
 # Is this a development instance? Set this to True on development/master
 # instances and False on stage/prod.
@@ -192,7 +192,7 @@ DEV = False
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['ec2-54-87-135-253.compute-1.amazonaws.com']
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # Hardcoded values can leak through source control.
@@ -202,7 +202,7 @@ ALLOWED_HOSTS = []
 try:
     SECRET_KEY = get_env_setting('SECRET_KEY')
 except:
-    SECRET_KEY = 'fqqv^ca)ailohed@t3*p*a@23esv^+2!7h$hp2_rho_0zq83i('
+    SECRET_KEY = 'fqqvdcaqailohedat3cpxa@23esvve2r7hqhp2_rho_0zq83iw'
 
 INTERNAL_IPS = ('127.0.0.1')
 

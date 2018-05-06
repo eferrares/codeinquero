@@ -72,7 +72,7 @@ class Enterprise(models.Model):
         verbose_name = 'Startup'
         verbose_name_plural = 'Startups'
 
-    def __str__(self):
+    def __unicode__(self):
         return self.name
 
 
@@ -85,7 +85,7 @@ class Post(models.Model):
     date_posted = models.DateTimeField(default=datetime.now())
     show = models.BooleanField(default=True)
     external_id = models.BigIntegerField(null=True)
-    moderated = models.BooleanField(default=True)
+    moderated = models.BooleanField(default=False)
 
     class Meta:
         verbose_name = 'Postagem'

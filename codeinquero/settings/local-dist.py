@@ -35,7 +35,7 @@ DEV = True
 
 ALLOWED_HOSTS = []
 
-SECRET_KEY = 'fqqv^ca)ailohed@t3*p*a@23esv^+2!7h$hp2_rho_0zq83i('
+SECRET_KEY = 'fqqvwca)ailohedat3wpwaa23esvrw2!7hshp2trhoy0zq83iu'
 
 
 # Remove this configuration variable to use your custom logging configuration
