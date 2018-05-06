@@ -1,19 +1,26 @@
 from datetime import datetime
 from core.models import Enterprise, Post
-from twitter.post_classifier import PostClassifier, APPROVED
+from twitter.post_classifier import PostClassifier, REJECTED
+from twitter.explict_content_detector import ExplicitContentDetector
 
 
 classifier = PostClassifier()
+detector = ExplicitContentDetector()
 
 
 def prepare_post_data(tweet, enterprise):
     classification = classifier.classify(tweet['text'])
-    print('Tweet {} classified with label {} text {}'.format(tweet['id'], classification, tweet['text']))
+    show = classification > REJECTED
+
 
     if 'media' in tweet['entities']:
         media_file = tweet['entities']['media'][0]['media_url_https']
+        explicit_content_detected = detector.detect_explict_content(media_file)
+        show = show or not explicit_content_detected
     else:
         media_file = None
+
+    print('Tweet {} show {} text {}'.format(tweet['id'], show, tweet['text']))
 
     return {
         'enterprise': enterprise,
@@ -24,7 +31,8 @@ def prepare_post_data(tweet, enterprise):
         'date_posted': datetime.strptime(tweet['created_at'], '%a %b %d %H:%M:%S %z %Y'),
         'file': media_file,
         'external_id': tweet['id'],
-        'moderated': classification != APPROVED
+        'moderated': False,
+        'show': show
     }
 
 
@@ -39,6 +47,10 @@ def get_enterprise(tweet):
 
 
 def is_tweet_valid(tweet):
+    if tweet['in_reply_to_status_id'] is not None:
+        print('Status {} is a retweet'.format(tweet['id']))
+        return False
+
     if Post.objects.filter(external_id=tweet['id']).exists():
         print('Tweet already processed {}'.format(tweet['id']))
         return False

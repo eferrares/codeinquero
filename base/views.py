@@ -14,8 +14,7 @@ def home(request):
 
 def enterprise_details(request, slug):
     enterprise = get_object_or_404(Enterprise, slug=slug)
-    # posts = Post.objects.filter(moderated=False).order_by('-id')[:50]
-    posts = Post.objects.all()
+    posts = Post.objects.filter(show=True, moderated=False).order_by('-id')[:50]
     i = list(range(len(posts)))
     random.shuffle(i)
     context = {
@@ -30,5 +29,5 @@ def enterprise_new_posts(request, slug):
     enterprise = get_object_or_404(Enterprise, slug=slug)
     greater_than = request.GET.get('greater_than')
 
-    posts = list(Post.objects.filter(id__gt=greater_than, moderated=False).order_by('-id').values('id', 'username', 'user_display_name', 'file', 'text')[:1])
+    posts = list(Post.objects.filter(id__gt=greater_than, moderated=False, show=True).order_by('-id').values('id', 'username', 'user_display_name', 'file', 'text')[:1])
     return JsonResponse(json.dumps(posts), safe=False)
