@@ -1,3 +1,4 @@
+import time
 import os, sys
 import django
 import codeinquero.settings
@@ -111,51 +112,53 @@ class HashTagSearch(metaclass=ABCMeta):
         potential_query_ids = self.get_query_id(response)
         shared_data = self.extract_shared_data(response)
 
-        media = shared_data['entry_data']['TagPage'][0]['graphql']['hashtag']['edge_hashtag_to_media']['edges']
+        if shared_data and 'entry_data' in shared_data and 'TagPage' in shared_data['entry_data']:
+            media = shared_data['entry_data']['TagPage'][0]['graphql']['hashtag']['edge_hashtag_to_media']['edges']
 
-        posts = []
-        for node in media:
-            post = self.extract_recent_instagram_post(node['node'])
-            posts.append(post)
-        self.save_results(posts)
-
-        end_cursor = shared_data['entry_data']['TagPage'][0]['graphql']['hashtag']['edge_hashtag_to_media']['page_info']['end_cursor']
-
-        # figure out valid queryId
-        success = False
-        print(potential_query_ids)
-        for potential_id in potential_query_ids:
-            variables = {
-                'tag_name': tag,
-                'first': 7,
-                'after': end_cursor
-            }
-            variables = urllib.parse.urlencode(variables)
-            url = "https://www.instagram.com/graphql/query/?query_hash=%s&variables=%s" % (potential_id, json.dumps(variables))
-            try:
-                data = requests.get(url).json()
-                if data['status'] == 'fail':
-                    # empty response, skip
-                    continue
-                query_id = potential_id
-                success = True
-                break
-            except JSONDecodeError as de:
-                # no valid JSON retured, most likely wrong query_id resulting in 'Oops, an error occurred.'
-                pass
-        if not success:
-            log.error("Error extracting Query Id, exiting")
-            sys.exit(1)
-
-        while end_cursor is not None:
-            url = "https://www.instagram.com/graphql/query/?query_hash=%s&tag_name=%s&first=12&after=%s" % (
-                query_id, tag, end_cursor)
-            data = json.loads(requests.get(url).text)
-            end_cursor = data['data']['hashtag']['edge_hashtag_to_media']['page_info']['end_cursor']
             posts = []
-            for node in data['data']['hashtag']['edge_hashtag_to_media']['edges']:
-                posts.append(self.extract_recent_query_instagram_post(node['node']))
+            for node in media:
+                post = self.extract_recent_instagram_post(node['node'])
+                posts.append(post)
             self.save_results(posts)
+
+            end_cursor = shared_data['entry_data']['TagPage'][0]['graphql']['hashtag']['edge_hashtag_to_media']['page_info']['end_cursor']
+
+            # figure out valid queryId
+            success = False
+            print(potential_query_ids)
+            for potential_id in potential_query_ids:
+                variables = {
+                    'tag_name': tag,
+                    'first': 7,
+                    'after': end_cursor
+                }
+                variables = urllib.parse.urlencode(variables)
+                url = "https://www.instagram.com/graphql/query/?query_hash=%s&variables=%s" % (potential_id, json.dumps(variables))
+                try:
+                    data = requests.get(url).json()
+                    if data['status'] == 'fail':
+                        # empty response, skip
+                        continue
+                    query_id = potential_id
+                    success = True
+                    break
+                except JSONDecodeError as de:
+                    # no valid JSON retured, most likely wrong query_id resulting in 'Oops, an error occurred.'
+                    pass
+            if not success:
+                log.error("Error extracting Query Id, exiting")
+                return
+                # sys.exit(1)
+
+            while end_cursor is not None:
+                url = "https://www.instagram.com/graphql/query/?query_hash=%s&tag_name=%s&first=12&after=%s" % (
+                    query_id, tag, end_cursor)
+                data = json.loads(requests.get(url).text)
+                end_cursor = data['data']['hashtag']['edge_hashtag_to_media']['page_info']['end_cursor']
+                posts = []
+                for node in data['data']['hashtag']['edge_hashtag_to_media']['edges']:
+                    posts.append(self.extract_recent_query_instagram_post(node['node']))
+                self.save_results(posts)
 
     @staticmethod
     def extract_shared_data(doc):
@@ -248,7 +251,7 @@ class HashTagSearch(metaclass=ABCMeta):
         :param instagram_results: A list of Instagram Posts
         """
         for result in instagram_results:
-            if not self.already_saved(result.post_id) or result.is_video:
+            if not self.already_saved(result.post_id):
                 post = Post()
                 post.enterprise = self.get_enterprise(result.hashtags())
                 post.username = result.user.id
@@ -278,4 +281,9 @@ class HashTagSearchExample(HashTagSearch):
 
 if __name__ == '__main__':
     log.basicConfig(level=log.INFO)
-    HashTagSearchExample().extract_recent_tag("queroeducacao")
+    hashtags = Enterprise.objects.all().values_list('hashtag', flat=True)
+    while True:
+        print('has', hashtags)
+        for hashtag in hashtags:
+            HashTagSearchExample().extract_recent_tag(hashtag[1:])
+        time.sleep(2)
