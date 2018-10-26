@@ -1,5 +1,6 @@
 import json
 import random
+import datetime
 from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse
 from core.models import Enterprise, Post
@@ -16,7 +17,7 @@ def home(request):
 @xframe_options_exempt
 def enterprise_details(request, slug):
     enterprise = get_object_or_404(Enterprise, slug=slug)
-    posts = Post.objects.filter(enterprise=enterprise, show=True, moderated=False).order_by('-id')[:50]
+    posts = Post.objects.filter(enterprise=enterprise, show=True, moderated=False, date_posted__gte=datetime.date(2018, 1, 1)).order_by('-id')[:50]
     i = list(range(len(posts)))
     random.shuffle(i)
     context = {
@@ -32,7 +33,7 @@ def enterprise_new_posts(request, slug):
     enterprise = get_object_or_404(Enterprise, slug=slug)
     greater_than = request.GET.get('greater_than')
 
-    posts_obj = Post.objects.filter(enterprise=enterprise, id__gt=greater_than, moderated=False, show=True).order_by('-id')
+    posts_obj = Post.objects.filter(enterprise=enterprise, id__gt=greater_than, moderated=False, show=True, date_posted__gte=datetime.date(2018, 1, 1)).order_by('-id')
     posts = []
     for post in posts_obj:
         posts.append(
