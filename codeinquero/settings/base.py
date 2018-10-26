@@ -192,7 +192,7 @@ DEV = False
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = ['ec2-54-87-135-253.compute-1.amazonaws.com']
+ALLOWED_HOSTS = ['ec2-34-229-239-118.compute-1.amazonaws.com']
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # Hardcoded values can leak through source control.
